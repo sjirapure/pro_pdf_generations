@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+    <title>Show Employee</title>
+    {% endblock%}
+
+
+    {% block content %}
+    <table style="border: 10px;" class="table table-striped text-center" >
+      
+        <thead style="background-color: rgb(119, 115, 125);">
+          <tr>
+            <th scope="col">EID</th>
+            <th scope="col">NAME</th>
+            <th scope="col">SALARY</th>
+            <th scope="col">E-MAIL</th>
+            <th scope="col">CITY</th>
+
+            <th scope="col">UPDATE</th>
+            <th scope="col">DELETE</th>
+            <th scope="col">PDF</th>
+          </tr>
+        </thead>
+        <tbody style="background-color: rgb(181, 223, 245);">
+            {% for i in obj %}
+          <tr >
+            <td>{{i.eid}}</td>
+            <td>{{i.name}}</td>
+            <td>{{i.salary}}</td>
+            <td>{{i.mail}}</td>
+            <td>{{i.city}}</td>
+
+            
+
+            <td><button class="btn btn-warning btn-sm"><a href="{% url 'update_url' i.id %}">UPDATE</a></button></td>
+            <td><button class="btn btn-danger btn-sm"><a href="{% url 'delete_url' i.id  %}">DELETE</a></button></td>
+            <td><button class="btn btn-success btn-sm"><a href="{% url 'report' i.id  %}">GENERATE PDF</a></button></td>
+          </tr>
+          {% endfor %}
+          
+        </tbody>
+      </table>
+    {% endblock %}
